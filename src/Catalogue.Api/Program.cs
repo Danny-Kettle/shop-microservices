@@ -1,5 +1,7 @@
 using Catalogue.Api.Data;
 using Microsoft.EntityFrameworkCore;
+using Catalogue.Api.Endpoints;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,9 @@ builder.Services.AddDbContext<CatalogueDbContext>(options =>
         builder.Configuration.GetConnectionString("Catalogue")));
 
 var app = builder.Build();
+
+
+app.MapProductEndpoints();
 
 using (var scope = app.Services.CreateScope())
 {
